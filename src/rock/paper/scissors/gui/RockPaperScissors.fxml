@@ -159,6 +159,7 @@
             <ToolBar layoutX="117.0" layoutY="-6.0" prefHeight="34.0" prefWidth="606.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <items>
                 <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveClick" text="Save" />
+                  <Button fx:id="loadButton" mnemonicParsing="false" onAction="#loadClick" text="Load" />
               </items>
             </ToolBar>
          </children>

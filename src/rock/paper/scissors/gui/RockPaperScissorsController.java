@@ -10,9 +10,14 @@ import javafx.scene.control.Label;
 // import the player objects
 import game.PersonPlayer;
 import game.ComputerPlayer;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.paint.Color;
 
 public class RockPaperScissorsController implements Initializable {
@@ -21,8 +26,8 @@ public class RockPaperScissorsController implements Initializable {
     @FXML private Label compScore;
     @FXML private Label bottomInfoLabel;
     
-    private final PersonPlayer p1 = new PersonPlayer();
-    private final ComputerPlayer cpu = new ComputerPlayer();
+    private PersonPlayer p1 = new PersonPlayer();
+    private ComputerPlayer cpu = new ComputerPlayer();
     
     @FXML
     private void rockClick(ActionEvent event) {
@@ -53,6 +58,29 @@ public class RockPaperScissorsController implements Initializable {
         }
         catch (IOException i) {
             i.printStackTrace();
+        }
+        
+    }
+    
+    @FXML
+    private void loadClick(ActionEvent event) {
+        
+        try {
+            FileInputStream fileIn = new FileInputStream("save.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            p1 = (PersonPlayer) in.readObject();
+            cpu = (ComputerPlayer) in.readObject();
+            in.close();
+            fileIn.close();
+            updateScore();
+        }
+        catch (IOException i) {
+            i.printStackTrace();
+            return;
+        }
+        catch (ClassNotFoundException c) {
+            System.out.println("Class not found.");
+            return;
         }
         
     }
