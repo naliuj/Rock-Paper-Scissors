@@ -7,7 +7,7 @@ public class PersonPlayer extends Player {
     }
     
     public PersonPlayer() {
-        this.name = "Player 1";
+        this.name = "Player";
     }
 
     public void generateMove(int m) {
