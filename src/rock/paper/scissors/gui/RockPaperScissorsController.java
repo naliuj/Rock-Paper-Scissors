@@ -24,7 +24,6 @@ public class RockPaperScissorsController implements Initializable {
     
     @FXML private Label playerScore;
     @FXML private Label compScore;
-    @FXML private Label bottomInfoLabel;
     
     private PersonPlayer p1 = new PersonPlayer();
     private ComputerPlayer cpu = new ComputerPlayer();
