@@ -9,6 +9,10 @@ public abstract class Player implements Serializable {
     protected MoveType move;
     private String color;
     
+    public String getName() { return name; }
+    public void changeName(String name) { this.name = name; }
+
+    
     public void incrementWins() { wins++; }
     public int getWins() { return wins; }
     
