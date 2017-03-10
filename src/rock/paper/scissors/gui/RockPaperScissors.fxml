@@ -160,7 +160,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="New" />
+                    <MenuItem fx:id="newButton" mnemonicParsing="false" onAction="#newClick" text="New" />
                         <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#saveClick" text="Save" />
                         <SeparatorMenuItem mnemonicParsing="false" />
