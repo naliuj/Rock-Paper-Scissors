@@ -71,10 +71,10 @@ public class RockPaperScissorsController implements Initializable {
             updateScore();
         }
         catch (IOException i) {
-            i.printStackTrace();
+            System.err.println("Error: " + i.getMessage());
         }
         catch (ClassNotFoundException c) {
-            System.out.println("Class not found.");
+            System.err.println("Class not found.");
         }
         
     }
