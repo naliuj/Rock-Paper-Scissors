@@ -72,12 +72,21 @@ public class RockPaperScissorsController implements Initializable {
         }
         catch (IOException i) {
             i.printStackTrace();
-            return;
         }
         catch (ClassNotFoundException c) {
             System.out.println("Class not found.");
-            return;
         }
+        
+    }
+    
+    @FXML
+    public void newClick(ActionEvent event) {
+        
+        // clear the data in the Player objects
+        p1.clearPlayer();
+        cpu.clearPlayer();
+        
+        updateScore();
         
     }
     
