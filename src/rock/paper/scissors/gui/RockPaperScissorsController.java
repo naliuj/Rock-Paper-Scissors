@@ -8,8 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
 // import the player objects
-import game.PersonPlayer;
-import game.ComputerPlayer;
+import game.Game;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,22 +21,24 @@ public class RockPaperScissorsController implements Initializable {
     @FXML private Label playerScore;
     @FXML private Label compScore;
     
-    private PersonPlayer p1 = new PersonPlayer();
-    private ComputerPlayer cpu = new ComputerPlayer();
+    private Game game = new Game();
     
     @FXML
     private void rockClick(ActionEvent event) {
-        compare(0);
+        game.compare(0);
+        updateScore();
     }
     
     @FXML
     private void paperClick(ActionEvent event) {
-        compare(1);
+        game.compare(1);
+        updateScore();
     }
 
     @FXML
     private void scissorsClick(ActionEvent event) {
-        compare(2);
+        game.compare(2);
+        updateScore();
     }
     
     @FXML
@@ -46,8 +47,7 @@ public class RockPaperScissorsController implements Initializable {
         try {
             FileOutputStream fileOut = new FileOutputStream("save.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(p1);
-            out.writeObject(cpu);
+            out.writeObject(game);
             out.close();
             fileOut.close();
             System.out.println("Data serialized.");
@@ -64,8 +64,7 @@ public class RockPaperScissorsController implements Initializable {
         try {
             FileInputStream fileIn = new FileInputStream("save.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            p1 = (PersonPlayer) in.readObject();
-            cpu = (ComputerPlayer) in.readObject();
+            game = (Game) in.readObject();
             in.close();
             fileIn.close();
             updateScore();
@@ -82,31 +81,18 @@ public class RockPaperScissorsController implements Initializable {
     @FXML
     public void newClick(ActionEvent event) {
         
-        // clear the data in the Player objects
-        p1.clearPlayer();
-        cpu.clearPlayer();
+        // create a brand new game
+        game = new Game();
         
         updateScore();
         
     }
-    
-    public void compare(int pMove) {
-        p1.generateMove(pMove);
-        cpu.generateMove();
         
-        if (p1.compareTo(cpu) == 1) {
-            p1.incrementWins();
-        } else if (p1.compareTo(cpu) == -1) {
-            cpu.incrementWins();
-        }
-        updateScore();
-    }
-    
     public void updateScore() {
-        playerScore.setText(Integer.toString(p1.getWins()));
-        playerScore.setTextFill(Color.web(p1.getColor()));
-        compScore.setText(Integer.toString(cpu.getWins()));
-        compScore.setTextFill(Color.web(cpu.getColor()));
+        playerScore.setText(Integer.toString(game.p1.getWins()));
+        playerScore.setTextFill(Color.web(game.p1.getColor()));
+        compScore.setText(Integer.toString(game.cpu.getWins()));
+        compScore.setTextFill(Color.web(game.cpu.getColor()));
     }
 
     

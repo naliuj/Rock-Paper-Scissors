@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class Game implements Serializable {
     
-    private PersonPlayer p1 = new PersonPlayer();
-    private ComputerPlayer cpu = new ComputerPlayer();
+    public PersonPlayer p1 = new PersonPlayer();
+    public ComputerPlayer cpu = new ComputerPlayer();
     
     public void compare(int pMove) {
         p1.generateMove(pMove);
@@ -16,6 +16,15 @@ public class Game implements Serializable {
         } else if (p1.compareTo(cpu) == -1) {
             cpu.incrementWins();
         }
+    }
+    
+    public Game() {
+        
+    }
+    
+    public Game(PersonPlayer p1, ComputerPlayer cpu) {
+        this.p1 = p1;
+        this.cpu = cpu;
     }
     
 }

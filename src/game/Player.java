@@ -7,17 +7,19 @@ public abstract class Player implements Serializable {
     protected String name;
     private int wins = 0;
     protected MoveType move;
-    private String color;
+    private String color = "#000000";
     
     public String getName() { return name; }
     public void changeName(String name) { this.name = name; }
 
+    /*
     public void clearPlayer() {
         name = null;
         wins = 0;
         move = null;
         color = "#000000";
     }
+    */
     
     public void incrementWins() { wins++; }
     public int getWins() { return wins; }
