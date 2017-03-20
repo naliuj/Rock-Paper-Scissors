@@ -151,7 +151,7 @@
             </StackPane>
             <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <Label fx:id="outComeLabel">
+                  <Label fx:id="winMessageLabel">
                      <font>
                         <Font size="17.0" />
                      </font>
