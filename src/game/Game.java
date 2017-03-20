@@ -13,14 +13,18 @@ public class Game implements Serializable {
         p1.generateMove(pMove);
         cpu.generateMove();
         
-        if (p1.compareTo(cpu) == 1) {
-            p1.incrementWins();
-            winMessage = "You win!";
-        } else if (p1.compareTo(cpu) == -1) {
-            cpu.incrementWins();
-            winMessage = "Computer wins!";
-        } else {
-            winMessage = "It's a tie!";
+        switch (p1.compareTo(cpu)) {
+            case 1:
+                p1.incrementWins();
+                winMessage = "You win!";
+                break;
+            case -1:
+                cpu.incrementWins();
+                winMessage = "Computer wins!";
+                break;
+            default:
+                winMessage = "It's a tie!";
+                break;
         }
     }
     
