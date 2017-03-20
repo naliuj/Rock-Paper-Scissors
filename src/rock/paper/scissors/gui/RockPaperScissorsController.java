@@ -20,6 +20,7 @@ public class RockPaperScissorsController implements Initializable {
     
     @FXML private Label playerScore;
     @FXML private Label compScore;
+    @FXML private Label winMessageLabel;
     
     private Game game = new Game();
     
@@ -93,6 +94,9 @@ public class RockPaperScissorsController implements Initializable {
         playerScore.setTextFill(Color.web(game.p1.getColor()));
         compScore.setText(Integer.toString(game.cpu.getWins()));
         compScore.setTextFill(Color.web(game.cpu.getColor()));
+        
+        winMessageLabel.setText(game.getWinMessage());
+        
     }
 
     

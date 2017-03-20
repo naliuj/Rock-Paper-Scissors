@@ -15,12 +15,13 @@ public class Game implements Serializable {
         
         if (p1.compareTo(cpu) == 1) {
             p1.incrementWins();
-            winMessage = p1.getName() + " wins!";
+            winMessage = "You win!";
         } else if (p1.compareTo(cpu) == -1) {
             cpu.incrementWins();
-            winMessage = cpu.getName() + " wins!";
+            winMessage = "Computer wins!";
+        } else {
+            winMessage = "It's a tie!";
         }
-        winMessage = "It's a tie!";
     }
     
     public String getWinMessage() {
