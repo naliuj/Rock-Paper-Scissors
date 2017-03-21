@@ -102,14 +102,19 @@ public class RockPaperScissorsController implements Initializable {
         compRock.getStyleClass().remove("cpu-choice");
         compPaper.getStyleClass().remove("cpu-choice");
         compScissors.getStyleClass().remove("cpu-choice");
-                
-        playerScore.setText(Integer.toString(game.p1.getWins()));
-        playerScore.setTextFill(Color.web(game.p1.getColor()));
-        compScore.setText(Integer.toString(game.cpu.getWins()));
-        compScore.setTextFill(Color.web(game.cpu.getColor()));
         
+        // update the scoreboard
+        playerScore.setText(Integer.toString(game.p1.getWins()));
+        compScore.setText(Integer.toString(game.cpu.getWins()));
+        
+        // change the color of the winner on the scoreboard
+        playerScore.setTextFill(Color.web(game.p1.getColor()));
+        compScore.setTextFill(Color.web(game.cpu.getColor()));
+
+        // update the win message label with the victor
         winMessageLabel.setText(game.getWinMessage());
         
+        // style the cpu's choice in move
         switch (game.cpu.getMove().value) {
             case 0:
                 compRock.getStyleClass().add("cpu-choice");
