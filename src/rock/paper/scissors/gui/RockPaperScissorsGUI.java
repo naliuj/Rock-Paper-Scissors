@@ -23,6 +23,9 @@ public class RockPaperScissorsGUI extends Application {
         
         Scene scene = new Scene(root);
         
+        // add stylesheet to the scene
+        scene.getStylesheets().add("rock/paper/scissors/gui/style.css");
+        
         stage.setScene(scene);
         stage.show();
     }
