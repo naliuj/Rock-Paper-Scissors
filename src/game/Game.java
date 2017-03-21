@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class Game implements Serializable {
     
-    public PersonPlayer p1 = new PersonPlayer();
-    public ComputerPlayer cpu = new ComputerPlayer();
+    final public PersonPlayer p1;
+    final public ComputerPlayer cpu;
     
     private String winMessage = "";
        
@@ -33,7 +33,8 @@ public class Game implements Serializable {
     }
     
     public Game() {
-        
+        p1 = new PersonPlayer();
+        cpu = new ComputerPlayer();
     }
     
     public Game(PersonPlayer p1, ComputerPlayer cpu) {
