@@ -14,8 +14,15 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 public class RockPaperScissorsController implements Initializable {
     
@@ -28,6 +35,9 @@ public class RockPaperScissorsController implements Initializable {
     @FXML private Button compRock;
     @FXML private Button compPaper;
     @FXML private Button compScissors;
+    
+    // panes
+    @FXML private GridPane mainGridPane;
     
     private Game game = new Game();
     
@@ -53,7 +63,7 @@ public class RockPaperScissorsController implements Initializable {
     private void saveClick(ActionEvent event) {
         
         try {
-            FileOutputStream fileOut = new FileOutputStream("save.ser");
+            FileOutputStream fileOut = new FileOutputStream("save.rps");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(game);
             out.close();
@@ -69,8 +79,17 @@ public class RockPaperScissorsController implements Initializable {
     @FXML
     private void loadClick(ActionEvent event) {
         
+        Stage stage = RockPaperScissorsGUI.getPrimaryStage();
+        
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Load Game File");
+        fc.getExtensionFilters().addAll(
+                new ExtensionFilter("RPS Files", "*.rps"),
+                new ExtensionFilter("All Files", "*.*"));
+        
         try {
-            FileInputStream fileIn = new FileInputStream("save.ser");
+            FileInputStream fileIn = new FileInputStream(
+                    fc.showOpenDialog(stage));
             ObjectInputStream in = new ObjectInputStream(fileIn);
             game = (Game) in.readObject();
             in.close();
