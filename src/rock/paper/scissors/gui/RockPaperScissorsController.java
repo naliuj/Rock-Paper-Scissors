@@ -14,15 +14,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class RockPaperScissorsController implements Initializable {
     
@@ -35,9 +32,6 @@ public class RockPaperScissorsController implements Initializable {
     @FXML private Button compRock;
     @FXML private Button compPaper;
     @FXML private Button compScissors;
-    
-    // panes
-    @FXML private GridPane mainGridPane;
     
     private Game game = new Game();
     
