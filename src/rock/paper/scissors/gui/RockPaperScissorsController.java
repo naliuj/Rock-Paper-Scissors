@@ -16,6 +16,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 
 public class RockPaperScissorsController implements Initializable {
     
@@ -52,8 +55,18 @@ public class RockPaperScissorsController implements Initializable {
     @FXML
     private void saveClick(ActionEvent event) {
         
+        Stage stage = RockPaperScissorsGUI.getPrimaryStage();
+        
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Save Game File");
+        fc.getExtensionFilters().addAll(
+                new ExtensionFilter("RPS Files", "*.rps"),
+                new ExtensionFilter("All Files", "*.*"));
+
+        
         try {
-            FileOutputStream fileOut = new FileOutputStream("save.ser");
+            FileOutputStream fileOut = new FileOutputStream(
+                    fc.showSaveDialog(stage));
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(game);
             out.close();
@@ -69,8 +82,17 @@ public class RockPaperScissorsController implements Initializable {
     @FXML
     private void loadClick(ActionEvent event) {
         
+        Stage stage = RockPaperScissorsGUI.getPrimaryStage();
+        
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Load Game File");
+        fc.getExtensionFilters().addAll(
+                new ExtensionFilter("RPS Files", "*.rps"),
+                new ExtensionFilter("All Files", "*.*"));
+        
         try {
-            FileInputStream fileIn = new FileInputStream("save.ser");
+            FileInputStream fileIn = new FileInputStream(
+                    fc.showOpenDialog(stage));
             ObjectInputStream in = new ObjectInputStream(fileIn);
             game = (Game) in.readObject();
             in.close();

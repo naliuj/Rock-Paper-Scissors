@@ -17,8 +17,21 @@ import javafx.stage.Stage;
  */
 public class RockPaperScissorsGUI extends Application {
     
+    private static Stage primaryStage;
+    
+    private void setPrimaryStage(Stage stage) {
+        RockPaperScissorsGUI.primaryStage = stage;
+    }
+    
+    public static Stage getPrimaryStage() {
+        return RockPaperScissorsGUI.primaryStage;
+    }    
+    
     @Override
     public void start(Stage stage) throws Exception {
+        
+        setPrimaryStage(stage);
+        
         Parent root = FXMLLoader.load(getClass().getResource("RockPaperScissors.fxml"));
         
         Scene scene = new Scene(root);
@@ -26,8 +39,9 @@ public class RockPaperScissorsGUI extends Application {
         // add stylesheet to the scene
         scene.getStylesheets().add("rock/paper/scissors/gui/style.css");
         
-        stage.setScene(scene);
-        stage.show();
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        
     }
 
     /**
