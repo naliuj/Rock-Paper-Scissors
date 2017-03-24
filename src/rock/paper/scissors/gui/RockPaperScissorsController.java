@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -56,8 +55,18 @@ public class RockPaperScissorsController implements Initializable {
     @FXML
     private void saveClick(ActionEvent event) {
         
+        Stage stage = RockPaperScissorsGUI.getPrimaryStage();
+        
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Save Game File");
+        fc.getExtensionFilters().addAll(
+                new ExtensionFilter("RPS Files", "*.rps"),
+                new ExtensionFilter("All Files", "*.*"));
+
+        
         try {
-            FileOutputStream fileOut = new FileOutputStream("save.rps");
+            FileOutputStream fileOut = new FileOutputStream(
+                    fc.showSaveDialog(stage));
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(game);
             out.close();
